@@ -1,0 +1,88 @@
+# DETALLE DE LOTES
+lotes = [
+    {'lote': 1, 'tamaño': '30 m²', 'valor': 300, 'estado': 'disponible'},
+    {'lote': 2, 'tamaño': '60 m²', 'valor': 600, 'estado': 'disponible'},
+    {'lote': 3, 'tamaño': '90 m²', 'valor': 900, 'estado': 'disponible'},
+    {'lote': 4, 'tamaño': '120 m²', 'valor': 1200, 'estado': 'disponible'},
+    {'lote': 5, 'tamaño': '130 m²', 'valor': 1300, 'estado': 'disponible'}
+]
+
+# Lista de lotes seleccionados
+lotes_seleccionados = []
+
+# Lista de clientes
+clientes = []
+
+#1/5 DISPONIBILIDAD DE LOTES
+def ver_disponibilidad():
+    print("Lotes Disponibles:")
+    for lote in lotes:
+        if lote['estado'] == 'disponible':
+            print(f"Lote {lote['lote']}: tamaño {lote['tamaño']}, valor: ${lote['valor']}")
+    print()
+
+#2/5 SELECCIONAR UN LOTE
+def seleccionar_lote():
+    ver_disponibilidad()
+    lote_elegido = int(input("Seleccione el número de lote que desea: "))
+    for lote in lotes:
+        if lote['lote'] == lote_elegido and lote['estado'] == 'disponible':
+            lote['estado'] = 'vendido'
+            lotes_seleccionados.append(lote)
+            return lote
+    print("El lote seleccionado no está disponible. Por favor, elija otro.")
+    return None
+
+#3/5 VER DETALLE DE LOTES
+def ver_detalles(lote):
+    print(f"Detalles del lote {lote['lote']}:")
+    print(f"Tamaño: {lote['tamaño']}")
+    print(f"Valor: ${lote['valor']}")
+    print()
+
+#4/5 VER CLIENTES
+def ver_clientes():
+    print("Clientes:")
+    for cliente in clientes:
+        print(f"Nombre: {cliente['nombre']}")
+        print(f"RUT: {cliente['rut']}")
+        print(f"Teléfono: {cliente['telefono']}")
+        print(f"Email: {cliente['email']}")
+        print()
+    print()
+
+# ***** MENU INTERACTIVO PRINCIPAL ******
+while True:
+    print("Bienvenidos/as a LoteosDuoc")
+    print("Seleccione una opción:")
+    print("1. Ver disponibilidad de lotes")
+    print("2. Seleccionar un lote")
+    print("3. Ver detalles del lote seleccionado")
+    print("4. Ver clientes")
+    print("5. Salir")
+
+    opcion = input("Opción: ")
+
+    if opcion == '1':
+        ver_disponibilidad()
+    elif opcion == '2':
+        lote_elegido = seleccionar_lote()
+        if lote_elegido:
+            rut = input("Ingrese su RUT: ")
+            nombre = input("Ingrese su nombre completo: ")
+            telefono = input("Ingrese su número de teléfono: ")
+            email = input("Ingrese su dirección: ")
+    if opcion == '3':
+        print (lotes_seleccionados)
+    if opcion == '4':
+        print (clientes)
+# 5/5 SALIR DEL MENU: Esta opción permitirá al cliente salir del sistema. Se mostrará un mensaje de despedida
+    if opcion == '5':
+        print ("¡Gracias por elegir LoteosDuoc!")
+        print ()
+    
+    if opcion != '1,2,3,4,5':
+        print("Por favor, ingrese una opción válida.")
+        print ()
+    print ()
+   
